@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": " node app",
-    "dev": "node --watch app",
+    "dev": "node  app",
     "test": "jest"
 },
   "keywords": [],
