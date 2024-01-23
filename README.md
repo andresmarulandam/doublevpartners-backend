@@ -9,7 +9,7 @@ Este proyecto proporciona una API para la gestión de tickets con paginación. L
 
 ## Clonar el Repositorio
 
-git clone https://github.com/andresmarulandam/doublevpartners-backend.git
+git clone https://github.com/andresmarulandam/doublevpartners-backend.git y luego: 
 cd tickets-api
 
 ## Instalar Dependencias
