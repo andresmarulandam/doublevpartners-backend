@@ -5,11 +5,15 @@ import ticketsRoutes from './routes/ticketsRoutes.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 import swagger0ptions from './docs/swaggerOptions.js';
+import * as dotenv from 'dotenv';
 
 const app = express();
-const PORT = 3000;
+dotenv.config();
 
-mongoose.connect('mongodb://127.0.0.1/ticketdb', {
+const PORT = process.env.PORT;
+const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+
+mongoose.connect(DB_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -24,7 +28,6 @@ app.use(bodyParser.json());
 app.use('/api', ticketsRoutes);
 
 const swaggerSpecs = swaggerJSDoc(swagger0ptions);
-console.log(swaggerSpecs);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 app.listen(PORT, () => {
