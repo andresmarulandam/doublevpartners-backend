@@ -1,4 +1,5 @@
 import Ticket from '../models/ticketsModel.js';
+import pagination from '../utils/utils.js';
 
 export const createTicket = async (req, res) => {
   const { user } = req.body;
@@ -14,8 +15,10 @@ export const createTicket = async (req, res) => {
 
 export const getAllTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.find();
-    res.json(tickets);
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.perPage) || 10;
+    const tickets = await pagination(Ticket.find(), page, perPage);
+    res.status(200).json(tickets);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al recuperar los tickets.' });
